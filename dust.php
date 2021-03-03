@@ -3,7 +3,7 @@
   <head>
   <meta charset="utf-8">
   <meta http-equiv="Refresh" content="300">
-  <title>SiWADOL's SDPJ! </title>
+  <title>Green University Sec : 10 Gruop 5! </title>
   <link rel="apple-touch-icon" sizes="57x57" href="f/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="f/apple-icon-60x60.png">
   <link rel="apple-touch-icon" sizes="72x72" href="f/apple-icon-72x72.png">
@@ -51,10 +51,10 @@
     <!--navbar -->
     <div class="">
 <nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background:rgba(0, 0, 0, 0.3)">
-  <a class="navbar-brand" href="index.html">
+  <a class="navbar-brand" href="index.php">
     <img src="f/apple-icon.png" width="30" height="30" class="d-inline-block align-top rounded" alt="">
   </a>
-  <a class="navbar-brand" href="#">Siwadol's SDPJ!</a>
+  <a class="navbar-brand" href="#">GUS10G5P</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -102,14 +102,14 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
    die('Could not Connect My Sql:' .mysql_error());
 }
 
-$sql = "SELECT * FROM rec_used ORDER BY date DESC LIMIT 10";
-$sql2 = "SELECT * FROM rec_used ORDER BY date DESC LIMIT 1";
+$sql = "SELECT * FROM dust ORDER BY date DESC LIMIT 10";
+$sql2 = "SELECT * FROM dust ORDER BY date DESC LIMIT 1";
 $sql3 = "SELECT * FROM dust ORDER BY date DESC LIMIT 1";
 $query = mysqli_query($conn,$sql);
 $query2 = mysqli_query($conn,$sql2);
 $query3 = mysqli_query($conn,$sql3);
 $display=mysqli_fetch_array($query2,MYSQLI_ASSOC);
-$dust = mysqli_fetch_array($query3,MYSQLI_ASSOC);
+$dust=mysqli_fetch_array($query3,MYSQLI_ASSOC);
 $result = mysqli_query($conn, $sql);
 ?>
 
@@ -118,7 +118,7 @@ $result = mysqli_query($conn, $sql);
      <div class="row d-flex justify-content-center mt-3">
        <div class="col-12">
          <div class="alert alert-success" role="alert" style="background-color: rgba(0, 0, 0, 0.35);color:white;border-width: 0px;border-color :rgba(52, 50, 87, 0.6)">
-  <h4 class="alert-heading">Welocme To Siwadol's SDxGU Project!</h4>
+  <h4 class="alert-heading">Welocme To Green University Sec : 10 Gruop 5 Project!</h4>
   <p>Even living is pointless for me, So just let me go already. Because I don’t even have a single dream anyway.</p>
   <hr style="border-color:rgba(0, 0, 0, 0.35);">
   <p class="mb-0">Don't look for me, Please don't call out to me, Don't find me, just leave things as it is.</p>
@@ -140,7 +140,7 @@ $result = mysqli_query($conn, $sql);
     echo "<h4 class=\"".$middel." text-success"." font-weight-bold"."\">Good</h4>";
 } elseif ($dust["aqi"] < 101) {
     echo "<h4 class=\"".$middel." text-warning"." font-weight-bold"."\">Moderate</h4>";
-} elseif ($display["aqi"] < 151 ) {
+} elseif ($dust["aqi"] < 151 ) {
     echo "<h4 class=\"".$middel." text-warning"." font-weight-bold"."\">Unhealthy for Sensitive Groups</h4>";
 } elseif ($dust["aqi"] < 201) {
     echo "<h4 class=\"".$middel." text-danger"." font-weight-bold"."\">UNHEALTHY</h4>";
@@ -152,7 +152,7 @@ $result = mysqli_query($conn, $sql);
     echo "<h4 class=\"".$middel." text-danger"." font-weight-bold"."\">Hazardous</h4>";
 }
    ?>
-  <h6 class="align-middle">Last Updated : <?php echo $dust["date"];  ?></h6>
+  <h5 class="align-middle"></h5>
 </div>
 
        </div>
@@ -160,20 +160,18 @@ $result = mysqli_query($conn, $sql);
 
        <div class="col-lg-6 col-xl-6 col-md-12 col-sm12-12 col-12 mt-2">
          <div class="card w-100 h-100 text-white shadow">
-  <div class="card-header text-center" style="font-size:20px;text-shadow: 4px 4px 5px rgba(0, 0, 0,1);">Temperature And Humidity</div>
+  <div class="card-header text-center" style="font-size:20px;text-shadow: 4px 4px 5px rgba(0, 0, 0,1);">PM1.0 & PM10.0</div>
   <div class="card-body text-center" style="text-shadow: 4px 4px 5px rgba(0, 0, 0,1);">
- <h5>Temperature</h5>
- <h4 style="font-size:69px"><?php echo $display["temp"];  ?> °C </h4>
+ <h5>PM1.0</h5>
+ <h4 style="font-size:69px"><?php echo $dust["pm10"];  ?> µg/m<sup>3</sup></h4>
  <br>
- <h5>Humidity</h5>
- <h4 style="font-size:69px"> <?php echo $display["humi"];  ?> %</h4>   <!-- Temp var here -->
- <h6 class="text-center">Last Updated : <?php echo $display["date"];  ?></h6>
- <h6 class="text-center">Update every 5 minutes.</h6>
+ <h5>PM10.0</h5>
+ <h4 style="font-size:69px"> <?php echo $dust["pm100"];  ?> µg/m<sup>3</sup></h4>   <!-- Temp var here -->
   </div>
        </div>
        </div>
      </div>
-     <div class="row" hidden>
+     <div class="row">
        <div class="col-12 mt-3">
          <div class="alert alert-success" role="alert" style="background-color: rgba(0, 0, 0, 0.35);color:white;border-width: 0px;border-color :rgba(52, 50, 87, 0.6)">
   <h6 class="mt-0 text-center">Last Updated : <?php echo $display["date"];  ?></h6>
@@ -183,7 +181,7 @@ $result = mysqli_query($conn, $sql);
 
      </div>
      <div class="row">
-          <div class="col-12 mt-3">
+          <div class="col-12 mt-1">
             <div class="card card-table w-100 h-100 text-white shadow">
     <div class="card-header">
     Log
@@ -193,19 +191,21 @@ $result = mysqli_query($conn, $sql);
       <table class="table text-white table-borderless mx-auto w-100 text-center" >
                    <tr>
                    <td>Time</td>
-                   <td>Temperature (°C)</td>
-                   <td>Humidity (%)</td>
-                   <td hidden>PM2.5 (µg/m<sup>3</sup>)</td>
-                   <td hidden>AQI</td>
+                   <td>PM1.0 (µg/m<sup>3</sup>)</td>
+                   <td>PM2.5 (µg/m<sup>3</sup>)</td>
+                   <td>PM10.0 (µg/m<sup>3</sup>)</td>
+                   <td>AQI</td>
                  </tr>
          <?php
                while($row = mysqli_fetch_array($result)) {
                echo "<tr>";
                echo "<td>" .$row["date"] . "</td> ";
-               echo "<td>" .$row["temp"] . " °C" .  "</td> ";
-               echo "<td>" .$row["humi"] . "%" . "</td> ";
-              // echo "<td>" .$row["pm25"] . " µg/m<sup>3</sup>" . "</td> ";
-              // echo "<td>" .$row["aqi"] . "</td> ";
+               //echo "<td>" .$row["temp"] . " °C" .  "</td> ";
+               // echo "<td>" .$row["humi"] . "%" . "</td> ";
+               echo "<td>" .$row["pm10"] . " µg/m<sup>3</sup>" . "</td> ";
+               echo "<td>" .$row["pm25"] . " µg/m<sup>3</sup>" . "</td> ";
+               echo "<td>" .$row["pm100"] . " µg/m<sup>3</sup>" . "</td> ";
+               echo "<td>" .$row["aqi"] . "</td> ";
                };
                ?>
       </table>
@@ -223,10 +223,10 @@ $result = mysqli_query($conn, $sql);
     <div class="col-lg-6 col-xl-6 col-md-12 col-sm12-12 col-12 mt-3">
       <div class="card w-100 h-100 text-white shadow">
   <div class="card-body d-flex flex-column">
-    <h5 class="card-title text-center align-middle mt-auto" style="">VERSION 1.4 <br> Base On 1.8.7 Final Sky Update. <br> F.Smart Device in Digital Performance </h5>
-    <h5 class="card-title text-center align-middle" style="">Arduino | DHT11 | Python 3.7  </h5>
+    <h5 class="card-title text-center align-middle mt-auto" style="">VERSION 1.4 <br> Base On 1.8.7 Final Sky Update. <br>F.Green University</h5> <br>
+    <h5 class="card-title text-center align-middle" style="">Arduino | PMS7003 | Python 3.7  </h5>
     <h5 class="card-title text-center align-middle" style="">Python Library  : pyserial 3.5 | Python-aqi 0.6.1 | MySQLdb</h5>
-    <a href="#" class="btn btn-block btn-primary" data-toggle="modal" data-target="#member" hidden>Green University Sec : 10 Gruop 5</a>
+    <a href="#" class="btn btn-block btn-primary" data-toggle="modal" data-target="#member">Green University Sec : 10 Gruop 5</a>
     <a href="#" class="btn btn-block btn-info" data-toggle="modal" data-target="#WIPCH">Github Repository</a>
 
      </div>
@@ -443,27 +443,29 @@ $result = mysqli_query($conn, $sql);
       </button>
     </div>
     <div class="modal-body" style="">
-      <p>Temperature ,Humidity PM2.5 and AQI data In order from latest to oldest.</p>
+      <p>PM2.5 and AQI data In order from latest to oldest.</p>
       <div class="table-responsive">
       <table class="table text-dark table-hover table-bordered text-center">
                    <tr>
                    <td>Time</td>
-                   <td>Temperature (°C)</td>
-                   <td>Humidity (%)</td>
-                   <td hidden>PM2.5 (µg/m<sup>3</sup>)</td>
-                   <td hidden>AQI</td>
+                   <td>PM1.0 (µg/m<sup>3</sup>)</td>
+                   <td>PM2.5 (µg/m<sup>3</sup>)</td>
+                   <td>PM10.0 (µg/m<sup>3</sup>)</td>
+                   <td>AQI</td>
                  </tr>
                  <?php
-                 $sql_all = "SELECT * FROM rec_used ORDER BY date DESC";
+                 $sql_all = "SELECT * FROM dust ORDER BY date DESC";
                  $query = mysqli_query($conn,$sql_all);
                  $result_all = mysqli_query($conn, $sql_all);
                        while($row2 = mysqli_fetch_array($result_all)) {
                        echo "<tr>";
                        echo "<td>" .$row2["date"] . "</td> ";
-                       echo "<td>" .$row2["temp"] . " °C" .  "</td> ";
-                       echo "<td>" .$row2["humi"] . "%" . "</td> ";
-                       //echo "<td>" .$row2["pm25"] . " µg/m<sup>3</sup>" . "</td> ";
-                       //echo "<td>" .$row2["aqi"] . "</td> ";
+                      // echo "<td>" .$row2["temp"] . " °C" .  "</td> ";
+                      // echo "<td>" .$row2["humi"] . "%" . "</td> ";
+                       echo "<td>" .$row2["pm10"] . " µg/m<sup>3</sup>" . "</td> ";
+                       echo "<td>" .$row2["pm25"] . " µg/m<sup>3</sup>" . "</td> ";
+                       echo "<td>" .$row2["pm10"] . " µg/m<sup>3</sup>" . "</td> ";
+                       echo "<td>" .$row2["aqi"] . "</td> ";
                        };
                        ?>
       </table>

@@ -3,18 +3,18 @@
 #include <LiquidCrystal_PCF8574.h>
 #include <Wire.h>
 #include "DHT.h"
-
 #define DHTPIN 13     // what pin we're connected to
-
 // Uncomment whatever type you're using!
 #define DHTTYPE DHT11   // DHT 11 
 //#define DHTTYPE DHT22   // DHT 22  (AM2302)
 //#define DHTTYPE DHT21   // DHT 21 (AM2301)
-int led = 7;
+int led = 12;
+int ledpower = 11;
 // Initialize DHT sensor for normal 16mhz Arduino
 DHT dht(DHTPIN, DHTTYPE);
 LiquidCrystal_PCF8574 lcd(0x27);
 void setup() {
+  digitalWrite(ledpower, HIGH);
   Wire.begin();
   Wire.beginTransmission(0x27);
   Serial.begin(9600); 
@@ -30,7 +30,7 @@ void setup() {
   lcd.setBacklight(255);
   lcd.print("YOUR MOM GAY");
   lcd.setCursor(0, 1); 
-  delay(1000);
+  //delay(1000);
   lcd.print("Mizuki is CUTE!");
   delay(1000);
   lcd.clear();
@@ -42,7 +42,6 @@ void setup() {
 }
 
 void loop() {
-  int pm25 = 0;
   // Wait a few seconds between measurements.
   lcd.clear();
   // Reading temperature or humidity takes about 250 milliseconds!
@@ -68,8 +67,6 @@ void loop() {
   //Serial.print(" %\t");
   //Serial.print("Temperature: "); 
   Serial.print(t);  //TEMP
-  Serial.print(" ");
-  Serial.print(pm25); //PM2.5
   Serial.println();
   //Serial.print(" *C ");
   //Serial.print(f);
@@ -80,14 +77,8 @@ void loop() {
   lcd.print("Humi : "); //LCD
   lcd.print(h);
   lcd.print("%");
-  lcd.setCursor(0, 1); 
-  lcd.print("PM2.5 : ");
-  lcd.print(pm25); 
-  lcd.print("µg/m3");
-  delay(1000);
-  lcd.clear();
-  lcd.print("Humi : "); //LCD
-  lcd.print(h);
+  lcd.print("Temp : "); //LCD
+  lcd.print(f);
   digitalWrite(led, HIGH);
   delay(500);
   digitalWrite(led, LOW);

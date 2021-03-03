@@ -2,8 +2,8 @@ import serial
 import MySQLdb
 import time
 import aqi
-
-print("Sending DHT11 Data to MySQL Server")
+import sys
+print("Sending PM1.0 PM2.5 PM10.0 Data to MySQL Server")
 print("SDPJ By Siwadol M. DM6201")
 count = 0
 def conn():
@@ -12,7 +12,7 @@ def conn():
     # open a cursor to the database
     cursor = dbConn.cursor()
     print("OK!")
-    cursor.execute("INSERT INTO rec_used (humi,temp,date,pm25,aqi) VALUES (%s,%s,%s,%s,%s)", (pieces[0], pieces[1], timestamp, pieces[2], aqi))
+    cursor.execute("INSERT INTO dust (pm10,pm25,pm100,date,aqi) VALUES (%s,%s,%s,%s,%s)", (pieces[0] , pieces[1], pieces[2], timestamp, aqi))
     dbConn.commit()  # commit the insert
     cursor.close()  # close the cursor
     
@@ -30,18 +30,19 @@ while True:
     print(data)
     print("decode to UTF-8")
     print(data.decode("utf-8"))
-    data2 = data.decode("utf-8")
+    data2 = str(data.decode("utf-8"))
     timestamp = str(time.strftime('%Y-%m-%d %H:%M:%S'))
     pieces = data2.split(" ")  # split the data by the tab
-    aqi = aqi.to_iaqi(aqi.POLLUTANT_PM25, pieces[2], algo=aqi.ALGO_EPA)
+    aqi = aqi.to_iaqi(aqi.POLLUTANT_PM25, pieces[1], algo=aqi.ALGO_EPA)
     conn() #submit to mysql
-    print("Temp : "+ pieces[1] + "\n" + "Humi : "+pieces[0]+"%"+"PM2.5 (µg/m3) : "+pieces[2]+"\n"+"AQI : "+ str(aqi))
+    print("PM1.0 : ",pieces[0],"  PM2.5 : ",pieces[1],"  PM10.0 : ",pieces[2],"  AQI : ",aqi)
     print("Submit Time : " + timestamp)
     count = count + 1
-    print("Count : ",count," Chin | ",count/10," Chinchin | ",count/100," Zhu")
+    #print("Count : ",count," Chin | ",count/10," Chinchin | ",count/100," Zhu")
     print("DATA SUBMITTED")
     arduino.close() #close port
     print("Port", device ,"Closed")
-    print("Submit Again In 300 Sec...")
+    #print("Clsoe in 10 sec")
     print("------------------------------------------------------")
-    time.sleep(300)
+    time.sleep(10)
+    sys.exit()
