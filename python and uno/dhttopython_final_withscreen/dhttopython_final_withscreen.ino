@@ -1,5 +1,3 @@
-// Example testing sketch for various DHT humidity/temperature sensors
-// Written by ladyada, public domain
 #include <LiquidCrystal_PCF8574.h>
 #include <Wire.h>
 #include "DHT.h"
@@ -18,8 +16,9 @@ void setup() {
   Wire.begin();
   Wire.beginTransmission(0x27);
   Serial.begin(9600); 
+  dht.begin();
   lcd.begin(16, 2);
- // Serial.println("DHTxx test!");
+//Serial.println("DHTxx test!");
   lcd.clear();
   lcd.setBacklight(255);
   lcd.print("Now Starting");
@@ -38,7 +37,6 @@ void setup() {
   lcd.setCursor(0, 1); 
   lcd.print("1st Read'n 5 s.");
   pinMode(led, OUTPUT); 
-  dht.begin();
 }
 
 void loop() {
@@ -55,9 +53,10 @@ void loop() {
   // Check if any reads failed and exit early (to try again).
   if (isnan(h) || isnan(t) || isnan(f)) {
     Serial.println("Failed to read from DHT sensor!");
+    digitalWrite(ledpower, HIGH);
+    digitalWrite(led, HIGH);
     return;
   }
-
   // Compute heat index
   // Must send in temp in Fahrenheit!
   float hi = dht.computeHeatIndex(f, h);

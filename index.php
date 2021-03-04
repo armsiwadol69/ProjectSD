@@ -118,7 +118,7 @@ $result = mysqli_query($conn, $sql);
      <div class="row d-flex justify-content-center mt-3">
        <div class="col-12">
          <div class="alert alert-success" role="alert" style="background-color: rgba(0, 0, 0, 0.35);color:white;border-width: 0px;border-color :rgba(52, 50, 87, 0.6)">
-  <h4 class="alert-heading">Welocme To Siwadol's SDxGU Project!</h4>
+  <h4 class="alert-heading">Welocme To Siwadol's SD Project!</h4>
   <p>Even living is pointless for me, So just let me go already. Because I don’t even have a single dream anyway.</p>
   <hr style="border-color:rgba(0, 0, 0, 0.35);">
   <p class="mb-0">Don't look for me, Please don't call out to me, Don't find me, just leave things as it is.</p>
@@ -227,7 +227,7 @@ $result = mysqli_query($conn, $sql);
     <h5 class="card-title text-center align-middle" style="">Arduino | DHT11 | Python 3.7  </h5>
     <h5 class="card-title text-center align-middle" style="">Python Library  : pyserial 3.5 | Python-aqi 0.6.1 | MySQLdb</h5>
     <a href="#" class="btn btn-block btn-primary" data-toggle="modal" data-target="#member" hidden>Green University Sec : 10 Gruop 5</a>
-    <a href="#" class="btn btn-block btn-info" data-toggle="modal" data-target="#WIPCH">Github Repository</a>
+    <a href="https://github.com/armsiwadol69/ProjectSD" target="_blank" class="btn btn-block btn-info">Github Repository</a>
 
      </div>
     </div>
@@ -236,7 +236,7 @@ $result = mysqli_query($conn, $sql);
   <div class="card bg-white-50 w-100">
   <img class="card-img" style="height:100%;opacity:1" src="img/texas.jpg" alt="Card image">
   <div class="card-img-overlay d-flex flex-column" style="color:white;text-shadow: 4px 4px 5px rgba(0, 0, 0,1);">
-    <h5 class="card-title">Siwadol's SDxGU Project. <br> Build:Mizuki | Developer</h5>
+    <h5 class="card-title">Siwadol's SD Project. <br> Build:Mizuki | Developer</h5>
     <h3 class="card-text mt-auto">Siwadol M.</h3>
     <h5 class="card-text">DM6201 116210806017-6 No.12</h5>
     <p class="card-text ">Studies Digital Media Technology <br> at Rajamangala University of Technology Thanyaburi</p>
